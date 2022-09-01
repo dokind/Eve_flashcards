@@ -9,7 +9,7 @@ class HomeController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final descriptionController = TextEditingController();
-
+// ...
   void addFlashCard() {
     final newCard = FlashCard(
       name: nameController.text,
