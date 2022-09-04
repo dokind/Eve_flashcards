@@ -6,6 +6,7 @@ import '../../../data/data.dart';
 class HomeController extends GetxController {
   // some dummy data
   final flashCards = <FlashCard>[].obs;
+  final name = ''.obs;
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final descriptionController = TextEditingController();
