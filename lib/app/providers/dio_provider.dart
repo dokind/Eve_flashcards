@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-class DioClient extends GetxService {
+class DioProvider extends GetxService {
   final isProduction = const bool.fromEnvironment('dart.vm.product');
   var dio = Dio();
   @override

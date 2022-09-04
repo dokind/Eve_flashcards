@@ -8,15 +8,36 @@ class AuthView extends GetView<AuthController> {
   const AuthView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('AuthView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'AuthView is working',
-          style: TextStyle(fontSize: 20),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Column(
+          children: [
+            const Placeholder(),
+            const Spacer(),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed('/auth/login', arguments: controller);
+                    },
+                    child: const Text('Login'),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed('/auth/register', arguments: controller);
+                    },
+                    child: const Text('Register'),
+                  ),
+                ),
+              ],
+            ),
+            Spacer()
+          ],
         ),
       ),
     );

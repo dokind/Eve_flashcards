@@ -1,4 +1,4 @@
-enum StorageType {
+enum StorageKeys {
   isOnboardingDone,
   themeMode,
   language,

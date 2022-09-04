@@ -12,12 +12,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Application',
+      enableLog: true,
       initialRoute: AppPages.INITIAL,
       initialBinding: AppBinding(),
       getPages: AppPages.routes,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: MyTheme.light,
+      defaultTransition: Transition.fade,
       darkTheme: MyTheme.dark,
+      // builder: (context, child) {
+      //   print('builder some how called ');
+      //   print('here is a child');
+      //   print(child);
+      //   return MediaQuery(
+      //     data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      //     child: child!,
+      //   );
+      // },
     );
   }
 }

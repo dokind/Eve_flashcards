@@ -2,9 +2,11 @@ import 'package:eve_flashcards/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
+import 'di.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // hide the status bar
+  await DenpendencyInjection.init();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(const MyApp());
 }

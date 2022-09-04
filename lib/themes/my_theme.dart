@@ -1,38 +1,103 @@
+// ignore_for_file: avoid_classes_with_only_static_members
+
 import 'package:flutter/material.dart';
 
-// ignore: avoid_classes_with_only_static_members
-class MyTheme {
-  static final light = ThemeData.light().copyWith(
-    // TODO: add your theme here
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.deepPurple,
-      primary: Colors.deepPurple,
-      secondary: Colors.green,
-    ),
-    textTheme: const TextTheme().copyWith(
-      headline1: const TextStyle(
-        fontSize: 72.0,
-        fontWeight: FontWeight.bold,
-      ),
+import '../shared/shared.dart';
 
-      /// App bar title
-      headline6: const TextStyle(
-        fontSize: 36.0,
-        fontStyle: FontStyle.italic,
+class MyTheme {
+  static ThemeData dark = ThemeData.dark().copyWith(
+    useMaterial3: true,
+    switchTheme: SwitchThemeData(
+      trackColor: MaterialStateProperty.all(onSurface),
+      thumbColor: MaterialStateProperty.all(darkSecondary),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(darkPrimary),
+        foregroundColor: MaterialStateProperty.all(darkOnSurface),
       ),
-      bodyText2: const TextStyle(
-        fontSize: 14.0,
-        fontFamily: 'Hind',
+    ),
+    navigationBarTheme: const NavigationBarThemeData(
+      indicatorColor: darkSecondary,
+    ),
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+          return null; // Use the component's default.
+        },
       ),
+    ),
+    primaryColor: darkPrimary,
+    colorScheme: const ColorScheme.dark(
+      secondaryContainer: primaryVariant,
+      primary: darkPrimary,
+      secondary: darkSecondary,
+      surface: darkSurface,
+      background: darkBackground,
+      error: darkError,
+      // shadow: shadow,
+      onPrimary: darkOnPrimary,
+      onSecondary: darkOnSecondary,
+      onSurface: darkOnSurface,
+      onBackground: darkOnBackground,
+      onError: darkOnError,
     ),
   );
 
-  static final dark = ThemeData.dark().copyWith(
-    // TODO: add your theme here
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: Colors.deepPurple,
-      primary: Colors.deepPurple,
-      secondary: Colors.green,
+  static ThemeData light = ThemeData.light().copyWith(
+    useMaterial3: true,
+    primaryColor: primary,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: secondary,
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      indicatorColor: primary,
+      elevation: 8.0,
+      iconTheme: MaterialStateProperty.resolveWith(
+        (Set<MaterialState> states) {
+          return null; // Use the component's default.
+        },
+      ),
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: background,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+    ),
+    switchTheme: SwitchThemeData(
+      trackColor: MaterialStateProperty.all(divider),
+      thumbColor: MaterialStateProperty.all(primary),
+    ),
+    cardTheme: const CardTheme(
+      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+      elevation: 2.0,
+    ),
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+          if (states.contains(MaterialState.pressed)) return darkPrimary;
+          return null; // Use the component's default.
+        },
+      ),
+    ),
+    colorScheme: _flashColorScheme,
   );
 }
+
+const _flashColorScheme = ColorScheme.light(
+  primary: primary,
+  secondaryContainer: primaryVariant,
+  secondary: secondary,
+  surface: surface,
+  background: background,
+  // shadow: shadow,
+  error: error,
+  onPrimary: onPrimary,
+  onSecondary: onSecondary,
+  onSurface: onSurface,
+  onBackground: onBackground,
+  onError: onError,
+);
