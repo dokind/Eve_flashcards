@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../generated/locales.g.dart';
 import '../controllers/auth_controller.dart';
 
 class AuthView extends GetView<AuthController> {
@@ -22,7 +23,7 @@ class AuthView extends GetView<AuthController> {
                     onPressed: () {
                       Get.toNamed('/auth/login', arguments: controller);
                     },
-                    child: const Text('Login'),
+                    child: Text(LocaleKeys.screens_login.tr),
                   ),
                 ),
                 const SizedBox(width: 10),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../shared/shared.dart';
-import '../../../providers/providers.dart';
-import '../../splash/controllers/splash_controller.dart';
+import '../../../providers/providers.dart' show ApiRepository;
+import '../../splash/splash.dart' show SplashController;
 
 class AuthController extends GetxController {
   final ApiRepository apiRepository;

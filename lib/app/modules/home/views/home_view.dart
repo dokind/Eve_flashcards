@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../generated/locales.g.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/widgets.dart';
 
@@ -11,7 +12,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flash Cards'),
+        title: Text(LocaleKeys.screens_home.tr),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -27,6 +28,20 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
+      bottomNavigationBar: NavigationBar(selectedIndex: 0, destinations: [
+        NavigationDestination(
+          icon: const Icon(Icons.home),
+          label: LocaleKeys.screens_home.tr,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.search),
+          label: LocaleKeys.screens_settings.tr,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.person),
+          label: LocaleKeys.screens_profile.tr,
+        ),
+      ]),
     );
   }
 

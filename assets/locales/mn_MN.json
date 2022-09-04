@@ -1,0 +1,31 @@
+{
+    "screens": {
+        "profile": "Профайл",
+        "activities": "",
+        "home": "Нүүр",
+        "settings": "Тохиргоо",
+        "login": "Нэвтрэх",
+        "register": "Бүртгүүлэх",
+        "forgotPassword": "Нууц үгээ мартсан"
+    },
+    "buttons": {
+        "login": "Нэвтрэх",
+        "sign_in": "Нэвтрэх",
+        "logout": "Гарах"
+    },
+    "labels": {
+        "email": "И-мэйл",
+        "password": "Нууц үг",
+        "remember_me": "Намайг сана",
+        "forgot_password": "Нууц үгээ мартсан?",
+        "sign_up": "Бүртгүүлэх"
+    },
+    "placeholders": {
+        "email": "И-мэйл",
+        "password": "Нууц үг"
+    },
+    "errors": {
+        "email": "И-мэйл хаяг буруу байна",
+        "password": "Нууц үг буруу байна"
+    }
+}

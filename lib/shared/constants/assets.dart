@@ -6,10 +6,13 @@ const json = 'assets/json/';
 const audios = 'assets/audios/';
 
 /// images
-const String icLogo = '${png}logo.png'; // etc...
+const icLogo = '${png}logo.png';
+// TODO add more images
 /// svgs
-const String icBack = '${icons}back.svg'; // etc...
+const icBack = '${icons}back.svg';
+
 /// icons
-const String back = '${icons}back.svg'; // etc...
+const back = '${icons}back.svg';
+
 /// fonts
-const String monteresFont = '${fonts}font.ttf'; // etc...
+const monteresFont = '${fonts}font.ttf';

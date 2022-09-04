@@ -1,0 +1,31 @@
+{
+    "screens": {
+        "profile": "Profile",
+        "activities": "Activities",
+        "home": "Home",
+        "settings": "Settings",
+        "login": "Login",
+        "register": "Register",
+        "forgotPassword": "Forgot Password"
+    },
+    "buttons": {
+        "login": "Login",
+        "sign_in": "Sign-in",
+        "logout": "Logout"
+    },
+    "labels": {
+        "email": "Email",
+        "password": "Password",
+        "remember_me": "Remember me",
+        "forgot_password": "Forgot password?",
+        "sign_up": "Sign-up"
+    },
+    "placeholders": {
+        "email": "Enter your email",
+        "password": "Enter your password"
+    },
+    "errors": {
+        "email": "Email is required",
+        "password": "Password is required"
+    }
+}
