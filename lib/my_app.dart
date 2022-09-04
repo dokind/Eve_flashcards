@@ -1,4 +1,4 @@
-import 'package:eve_flashcards/app/styles/my_theme.dart';
+import 'package:eve_flashcards/themes/my_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Application",
+      title: 'Application',
       initialRoute: AppPages.INITIAL,
       initialBinding: AppBinding(),
       getPages: AppPages.routes,

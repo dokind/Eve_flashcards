@@ -8,10 +8,10 @@ class HomeBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SnakeController>(
-      () => SnakeController(),
+      SnakeController.new,
     );
     Get.lazyPut<HomeController>(
-      () => HomeController(),
+      HomeController.new,
     );
   }
 }

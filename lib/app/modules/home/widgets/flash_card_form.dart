@@ -48,9 +48,7 @@ class FlashCardForm extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              onPressed: () {
-                _checkForm();
-              },
+              onPressed: _checkForm,
               child: const Text('Add'),
             )
           ],

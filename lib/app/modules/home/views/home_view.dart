@@ -28,10 +28,7 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // controller.addFlashCard();
-          _addFlashCard();
-        },
+        onPressed: _addFlashCard,
         child: const Icon(Icons.add),
       ),
       body: Obx(
