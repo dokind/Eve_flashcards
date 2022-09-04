@@ -1,6 +1,7 @@
-import 'package:eve_flashcards/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../controllers/controllers.dart';
 
 class FlashCardForm extends StatelessWidget {
   FlashCardForm({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class FlashCardForm extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
       height: Get.height * 0.7,
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.background,
       child: Form(
         key: controller.formKey,
         child: Column(

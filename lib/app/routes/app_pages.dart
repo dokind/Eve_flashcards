@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 
 import '../modules/modules.dart';
-import '../modules/splash/bindings/splash_binding.dart';
-import '../modules/splash/views/splash_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -24,8 +22,8 @@ class AppPages {
       page: () => const AuthView(),
       binding: AuthBinding(),
       children: [
-        GetPage(name: _Paths.LOGIN, page: () => const LoginView()),
-        GetPage(name: _Paths.REGISTER, page: () => const RegisterView()),
+        GetPage(name: _Paths.LOGIN, page: LoginView.new),
+        GetPage(name: _Paths.REGISTER, page: RegisterView.new),
       ],
     ),
     GetPage(

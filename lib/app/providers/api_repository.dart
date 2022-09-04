@@ -12,4 +12,8 @@ class ApiRepository {
     // });
     return 'response';
   }
+
+  Future<String> getAppVersion() async {
+    return '1.0.0';
+  }
 }

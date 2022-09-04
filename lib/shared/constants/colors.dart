@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 
 /// dark [ThemeData] colors
 const darkPrimary = Color(0xFFBB86FC);

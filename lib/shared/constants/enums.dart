@@ -4,5 +4,6 @@ enum StorageKeys {
   language,
   settings,
   token,
+  appVersion,
   theme,
 }

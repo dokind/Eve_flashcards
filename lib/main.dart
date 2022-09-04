@@ -1,7 +1,7 @@
-import 'package:eve_flashcards/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'my_app.dart';
 import 'di.dart';
 
 void main() async {

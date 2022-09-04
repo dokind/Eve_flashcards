@@ -1,11 +1,10 @@
-import 'package:eve_flashcards/app/modules/splash/controllers/splash_controller.dart';
-import 'package:eve_flashcards/shared/constants/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../shared/utils/utils.dart';
+import '../../../../shared/shared.dart';
 import '../../../providers/providers.dart';
+import '../../splash/controllers/splash_controller.dart';
 
 class AuthController extends GetxController {
   final ApiRepository apiRepository;
@@ -30,16 +29,20 @@ class AuthController extends GetxController {
       );
       final prefs = Get.find<SharedPreferences>();
       if (res.isNotEmpty) {
-        /// Save token to local storage
         prefs.setString(StorageKeys.token.name, res);
 
         /// Navigate to home page
         Get.find<SplashController>().token.value = res;
-      }
-      if (res != null) {
-        Get.offAllNamed('/home');
+      } else {
+        loginPasswordController.clear();
       }
     }
+  }
+
+  logout() async {
+    final prefs = Get.find<SharedPreferences>();
+    await prefs.remove(StorageKeys.token.name);
+    Get.find<SplashController>().token.value = null;
   }
 
   @override

@@ -78,7 +78,6 @@ class FocusedMenuDetailsState extends State<FocusedMenuDetails>
             top: widget.childOffset.dy,
             left: widget.childOffset.dx,
             child: AbsorbPointer(
-              absorbing: true,
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,

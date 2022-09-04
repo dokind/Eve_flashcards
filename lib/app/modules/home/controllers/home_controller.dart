@@ -15,7 +15,6 @@ class HomeController extends GetxController {
     final newCard = FlashCard(
       name: nameController.text,
       description: descriptionController.text,
-      isMemorized: false,
     );
     flashCards.add(newCard);
     resetForm();

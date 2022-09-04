@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: avoid_classes_with_only_static_members, avoid_redundant_argument_values, lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';
 

@@ -36,7 +36,7 @@ class AuthView extends GetView<AuthController> {
                 ),
               ],
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
       ),

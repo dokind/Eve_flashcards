@@ -1,4 +1,3 @@
-import 'package:eve_flashcards/app/modules/home/views/snake_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -14,18 +13,6 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         title: const Text('Flash Cards'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(
-                const SnakeView(),
-              );
-            },
-            icon: const Icon(
-              Icons.gamepad,
-            ),
-          ),
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addFlashCard,
