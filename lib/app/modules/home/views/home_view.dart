@@ -28,20 +28,26 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-      bottomNavigationBar: NavigationBar(selectedIndex: 0, destinations: [
-        NavigationDestination(
-          icon: const Icon(Icons.home),
-          label: LocaleKeys.screens_home.tr,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.search),
-          label: LocaleKeys.screens_settings.tr,
-        ),
-        NavigationDestination(
-          icon: const Icon(Icons.person),
-          label: LocaleKeys.screens_profile.tr,
-        ),
-      ]),
+      bottomNavigationBar: NavigationBar(
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.home),
+            label: LocaleKeys.screens_home.tr,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.local_activity),
+            label: LocaleKeys.screens_activities.tr,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.person),
+            label: LocaleKeys.screens_profile.tr,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings),
+            label: LocaleKeys.screens_settings.tr,
+          ),
+        ],
+      ),
     );
   }
 
