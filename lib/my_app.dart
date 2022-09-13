@@ -12,12 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Application',
+      title: 'Eve flash cards',
+      debugShowCheckedModeBanner: false,
       initialBinding: AppBinding(),
       defaultTransition: Transition.fade,
       getPages: AppPages.routes,
       initialRoute: AppPages.INITIAL,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: MyTheme.light,
       darkTheme: MyTheme.dark,
       translationsKeys: AppTranslation.translations,

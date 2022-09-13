@@ -14,6 +14,17 @@ class ApiRepository {
   }
 
   Future<String> getAppVersion() async {
-    return '1.0.0';
+    final response = await apiProvider.get('/version') as String;
+
+    return response;
+  }
+
+  register(String nickname, String password) async {
+    final data = {
+      'nickname': nickname,
+      'password': password,
+    };
+    final response = await apiProvider.post('auth/register', data: data);
+    return 'response';
   }
 }

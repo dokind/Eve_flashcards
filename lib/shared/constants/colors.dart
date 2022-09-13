@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+// 459FD3,1F8ED5,59CCEF,8EE2F3,01010D
 /// dark [ThemeData] colors
-const darkPrimary = Color(0xFFBB86FC);
+const darkPrimary = Color(0xFF8EE2F3);
 const primaryVariant = Color(0xFF4A148C);
 const darkSecondary = Color(0xFF03DAC6);
 const darkBackground = Color(0xFF121212);
@@ -16,7 +17,7 @@ const darkOnError = Color(0xFF000000);
 // const shadow = Color(0xFF121212);
 
 /// light [ThemeData] colors
-const primary = Color(0xFF6200EE);
+const primary = Color(0xFF1F8ED5);
 const secondary = Color(0xFF03DAC6);
 const secondryVariant = Color(0xFF018786);
 const divider = Color(0xFFBDBDBD);

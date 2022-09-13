@@ -38,10 +38,52 @@ class AuthController extends GetxController {
     }
   }
 
+  register(BuildContext context) async {
+    AppFocus.unfocus(context);
+    if (registerFormKey.currentState!.validate()) {
+      final res = await apiRepository.register(
+        registerEmailController.text,
+        registerPasswordController.text,
+      );
+      final prefs = Get.find<SharedPreferences>();
+      if (res.isNotEmpty) {
+        prefs.setString(StorageKeys.token.name, res);
+        Get.find<SplashController>().token.value = res;
+        _clearRegisterForm();
+      } else {
+        registerPasswordController.clear();
+        registerConfirmPasswordController.clear();
+      }
+    }
+  }
+
+  forgetPassword(BuildContext context) async {
+    AppFocus.unfocus(context);
+    // if (loginFormKey.currentState!.validate()) {
+    //   final res = await apiRepository.forgetPassword(
+    //     loginEmailController.text,
+    //   );
+    //   final prefs = Get.find<SharedPreferences>();
+    //   if (res.isNotEmpty) {
+    //     prefs.setString(StorageKeys.token.name, res);
+    //     Get.find<SplashController>().token.value = res;
+    //   } else {
+    //     loginPasswordController.clear();
+    //   }
+    // }
+  }
+
   logout() async {
     final prefs = Get.find<SharedPreferences>();
     await prefs.remove(StorageKeys.token.name);
     Get.find<SplashController>().token.value = null;
+  }
+
+  _clearRegisterForm() {
+    registerEmailController.clear();
+    registerPasswordController.clear();
+    registerConfirmPasswordController.clear();
+    registerTermsChecked = false;
   }
 
   @override

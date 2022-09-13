@@ -1,3 +1,5 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -10,14 +12,17 @@ class SplashController extends GetxController {
   final token = Rxn<String?>();
   late Worker worker;
   final storage = Get.find<SharedPreferences>();
+  // final connectivity = Get.find<Connectivity>();
+
   @override
   void onInit() async {
     super.onInit();
     await Future.delayed(const Duration(seconds: 2));
-    if (await _hasUpdate()) {
-      _checkAuthStatus();
-    } else {
+    final isCurrent = await _isCurrentVersion();
+    if (isCurrent == false) {
       _showUpdateDialog();
+    } else {
+      _checkAuthStatus();
     }
   }
 
@@ -27,10 +32,15 @@ class SplashController extends GetxController {
     token.value = null;
   }
 
-  Future<bool> _hasUpdate() async {
-    final lastestVersion = await Get.find<ApiRepository>().getAppVersion();
-    final localVersion = await _localVersion();
-    return lastestVersion == localVersion;
+  /// CHECKING UPDATE VERSION
+  Future<bool> _isCurrentVersion() async {
+    try {
+      final lastestVersion = await Get.find<ApiRepository>().getAppVersion();
+      final localVersion = await _localVersion();
+      return lastestVersion == localVersion;
+    } on Exception {
+      return true;
+    }
   }
 
   _checkAuthStatus() {
@@ -66,5 +76,11 @@ class SplashController extends GetxController {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    worker.dispose();
+    super.dispose();
   }
 }
