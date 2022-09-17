@@ -1,3 +1,4 @@
+import '../data/data.dart';
 import 'dio_provider.dart';
 
 class ApiRepository {
@@ -19,12 +20,18 @@ class ApiRepository {
     return response;
   }
 
-  register(String nickname, String password) async {
+  Future<String> register(String nickname, String password) async {
     final data = {
       'nickname': nickname,
       'password': password,
     };
-    final response = await apiProvider.post('auth/register', data: data);
+    print(data);
+    // final response = await apiProvider.post('auth/register', data: data);
     return 'response';
+  }
+
+  Future<User> getUser() async {
+    final response = await apiProvider.get('auth/user');
+    return User.fromJson(response);
   }
 }

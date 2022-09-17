@@ -1,10 +1,13 @@
+import 'dart:ui';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../generated/locales.g.dart';
 import '../../../../shared/shared.dart';
 import '../controllers/auth_controller.dart';
+import '../widgets/widgets.dart';
 
 class AuthView extends GetView<AuthController> {
   const AuthView({Key? key}) : super(key: key);
@@ -13,58 +16,84 @@ class AuthView extends GetView<AuthController> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        body: Column(
+        body: Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-            ),
-
-            /// rotate like page
-            TweenAnimationBuilder<double>(
-              tween: Tween<double>(begin: -0.6, end: 0.5),
-              duration: const Duration(seconds: 2),
-              curve: Curves.easeInBack,
-              builder: (context, tween, child) {
-                return Transform.rotate(
-                  angle: 0.5,
-                  child: Transform(
-                    transform: Matrix4.identity()
-                      ..setEntry(2, 2, 0.001)
-                      ..rotateX(0.5)
-                      ..rotateZ(tween),
-                    child: child,
-                  ),
-                );
-              },
-              child: const AppLogo(height: 120.0),
-            ),
-            const Spacer(),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Get.toNamed('/auth/login', arguments: controller);
-                    },
-                    child: Text(LocaleKeys.screens_login.tr),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: primary,
+            const LoginBackground(),
+            Positioned.fill(
+              child: DelayedAnimation(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.0),
                     ),
-                    onPressed: () {
-                      Get.toNamed('/auth/register', arguments: controller);
-                    },
-                    child: const Text('Register'),
                   ),
                 ),
-              ],
+              ),
             ),
-            const Spacer()
+            Positioned.fill(
+              child: Align(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 8),
+                    DelayedAnimation(
+                      delay: 400,
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          ColorizeAnimatedText(
+                            'Eve FlashCards',
+                            textStyle:
+                                Theme.of(context).textTheme.headline6!.copyWith(
+                              fontFamily: 'LuckiestGuy',
+                              color: Colors.white,
+                              fontSize: 40,
+                              shadows: [
+                                const Shadow(
+                                  blurRadius: 10.0,
+                                  offset: Offset(5.0, 5.0),
+                                ),
+                              ],
+                            ),
+                            colors: [primary, secondary],
+                            speed: const Duration(milliseconds: 250),
+                          ),
+                        ],
+                        isRepeatingAnimation: false,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Learn and rise with EVE',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 10.0,
+                            offset: Offset(5.0, 5.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned.fill(
+              bottom: MediaQuery.of(context).padding.bottom,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Obx(
+                  () => controller.isOnBaorded.value == true
+                      ? LoginRegisterButton()
+
+                      /// NAVIGATE TO ONBOARDING SCREEN
+                      : ContinueButton(),
+                ),
+              ),
+            ),
           ],
         ),
       ),

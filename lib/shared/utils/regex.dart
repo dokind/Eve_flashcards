@@ -5,4 +5,9 @@ class Regex {
     RegExp regExp = RegExp(r'\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*');
     return regExp.hasMatch(email);
   }
+
+  static bool isPhone(String phone) {
+    RegExp regExp = RegExp(r'^1[3456789]\d{9}$');
+    return regExp.hasMatch(phone);
+  }
 }

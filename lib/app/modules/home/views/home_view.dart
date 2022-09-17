@@ -2,59 +2,63 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../generated/locales.g.dart';
-import '../controllers/home_controller.dart';
-import '../widgets/widgets.dart';
+import '../home.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(LocaleKeys.screens_home.tr),
-        centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addFlashCard,
-        child: const Icon(Icons.add),
-      ),
-      body: Obx(
-        () => ListView.builder(
-          itemCount: controller.flashCards.length,
-          itemBuilder: (context, index) => FlashCardCard(
-            flashCard: controller.flashCards[index],
-            index: index,
+    return GetBuilder<HomeController>(
+      init: HomeController(),
+      builder: (controller) => controller.obx(
+        onLoading: Container(
+          color: Colors.white,
+          child: const Center(
+            child: CircularProgressIndicator(),
           ),
         ),
+        onError: (error) => Center(
+          child: Center(
+            child: Text(
+              error.toString(),
+            ),
+          ),
+        ),
+        (user) => Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Welcome ',
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
+          bottomNavigationBar: NavigationBar(
+              selectedIndex: controller.currentIndex,
+              onDestinationSelected: (value) => controller.changeIndex(value),
+              destinations: const [
+                NavigationDestination(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.favorite),
+                  label: 'Favorite',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.search),
+                  label: 'Search',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.person),
+                  label: 'Profile',
+                ),
+              ]),
+        ),
       ),
-      bottomNavigationBar: NavigationBar(
-        destinations: [
-          NavigationDestination(
-            icon: const Icon(Icons.home),
-            label: LocaleKeys.screens_home.tr,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.local_activity),
-            label: LocaleKeys.screens_activities.tr,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.person),
-            label: LocaleKeys.screens_profile.tr,
-          ),
-          NavigationDestination(
-            icon: const Icon(Icons.settings),
-            label: LocaleKeys.screens_settings.tr,
-          ),
-        ],
-      ),
-    );
-  }
-
-  _addFlashCard() {
-    Get.bottomSheet(
-      FlashCardForm(),
-      isScrollControlled: true,
     );
   }
 }

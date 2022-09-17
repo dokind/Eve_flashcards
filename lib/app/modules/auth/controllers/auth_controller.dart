@@ -3,21 +3,37 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../shared/shared.dart';
 import '../../../providers/providers.dart' show ApiRepository;
+import '../../../routes/app_pages.dart';
 import '../../splash/splash.dart' show SplashController;
 
 class AuthController extends GetxController {
   final ApiRepository apiRepository;
   AuthController({required this.apiRepository});
+  final prefs = Get.find<SharedPreferences>();
 
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   final registerEmailController = TextEditingController();
   final registerPasswordController = TextEditingController();
   final registerConfirmPasswordController = TextEditingController();
-  bool registerTermsChecked = false;
+  final registerTermsChecked = false.obs;
 
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   final loginEmailController = TextEditingController();
   final loginPasswordController = TextEditingController();
+
+  final pageController = PageController();
+  final currentPage = 0.obs;
+
+  final isOnBaorded = Rxn<bool>();
+  final isOnBaordedDone = false.obs;
+
+  @override
+  onInit() {
+    /// CHECKING ONBOARDED BEFORE
+    isOnBaorded.value = prefs.getBool(StorageKeys.isOnboardingDone.name);
+
+    super.onInit();
+  }
 
   login(BuildContext context) async {
     AppFocus.unfocus(context);
@@ -26,7 +42,6 @@ class AuthController extends GetxController {
         loginEmailController.text,
         loginPasswordController.text,
       );
-      final prefs = Get.find<SharedPreferences>();
       if (res.isNotEmpty) {
         prefs.setString(StorageKeys.token.name, res);
 
@@ -45,7 +60,7 @@ class AuthController extends GetxController {
         registerEmailController.text,
         registerPasswordController.text,
       );
-      final prefs = Get.find<SharedPreferences>();
+
       if (res.isNotEmpty) {
         prefs.setString(StorageKeys.token.name, res);
         Get.find<SplashController>().token.value = res;
@@ -83,7 +98,7 @@ class AuthController extends GetxController {
     registerEmailController.clear();
     registerPasswordController.clear();
     registerConfirmPasswordController.clear();
-    registerTermsChecked = false;
+    registerTermsChecked.value = false;
   }
 
   @override
@@ -94,5 +109,15 @@ class AuthController extends GetxController {
     loginEmailController.dispose();
     loginPasswordController.dispose();
     super.dispose();
+  }
+
+  navigateToOnboard() async {
+    Get.toNamed(Routes.ONBOARD);
+  }
+
+  Future<void> onBoardingDone() async {
+    final prefs = Get.find<SharedPreferences>();
+    await prefs.setBool(StorageKeys.isOnboardingDone.name, true);
+    Get.offAllNamed(Routes.AUTH);
   }
 }

@@ -1,36 +1,38 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
+import '../../../providers/api_repository.dart';
 
-class HomeController extends GetxController {
-  // some dummy data
-  final flashCards = <FlashCard>[].obs;
-  final name = ''.obs;
-  final formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController();
-  final descriptionController = TextEditingController();
-// ...
-  void addFlashCard() {
-    final newCard = FlashCard(
-      name: nameController.text,
-      description: descriptionController.text,
-    );
-    flashCards.add(newCard);
-    resetForm();
-  }
+class HomeController extends GetxController with StateMixin<User>, ScrollMixin {
+  final ApiRepository _apiRepository = Get.find();
+  int currentIndex = 0;
 
-  void resetForm() {
-    nameController.clear();
-    descriptionController.clear();
-  }
-
-// that's it
-// for today ;)
   @override
-  void onClose() {
-    nameController.dispose();
-    descriptionController.dispose();
-    super.onClose();
+  void onInit() async {
+    try {
+      final res = await _apiRepository.getUser();
+      await Future.delayed(const Duration(seconds: 2));
+      change(res, status: RxStatus.success());
+    } on Exception catch (e) {
+      change(null, status: RxStatus.error(e.toString()));
+    }
+    super.onInit();
+  }
+
+  changeIndex(int index) {
+    currentIndex = index;
+    update();
+  }
+
+  @override
+  Future<void> onEndScroll() {
+    // TODO: implement onEndScroll
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> onTopScroll() {
+    // TODO: implement onTopScroll
+    throw UnimplementedError();
   }
 }

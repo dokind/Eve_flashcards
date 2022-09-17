@@ -10,15 +10,13 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RegisterView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'RegisterView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: PageView(
+        controller: controller.pageController,
+        children: const [
+          Center(
+            child: Text('1'),
+          )
+        ],
       ),
     );
   }

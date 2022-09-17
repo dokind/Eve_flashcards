@@ -1,5 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -20,7 +18,8 @@ class SplashController extends GetxController {
     await Future.delayed(const Duration(seconds: 2));
     final isCurrent = await _isCurrentVersion();
     if (isCurrent == false) {
-      _showUpdateDialog();
+      _checkAuthStatus();
+      // _showUpdateDialog();
     } else {
       _checkAuthStatus();
     }
@@ -36,6 +35,7 @@ class SplashController extends GetxController {
   Future<bool> _isCurrentVersion() async {
     try {
       final lastestVersion = await Get.find<ApiRepository>().getAppVersion();
+
       final localVersion = await _localVersion();
       return lastestVersion == localVersion;
     } on Exception {

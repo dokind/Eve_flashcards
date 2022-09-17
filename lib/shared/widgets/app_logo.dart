@@ -4,13 +4,15 @@ class AppLogo extends StatelessWidget {
   const AppLogo({
     super.key,
     required this.height,
+    required this.path,
   });
+  final String path;
   final double height;
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'logo',
+      tag: path,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Image.asset(

@@ -19,16 +19,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AUTH,
-      page: () => const AuthView(),
+      page: AuthView.new,
       binding: AuthBinding(),
       children: [
         GetPage(name: _Paths.LOGIN, page: LoginView.new),
         GetPage(name: _Paths.REGISTER, page: RegisterView.new),
+        GetPage(name: _Paths.ONBOARD, page: OnboardView.new),
       ],
     ),
     GetPage(
       name: _Paths.SPLASH,
-      page: () => const SplashView(),
+      page: SplashView.new,
       binding: SplashBinding(),
     ),
   ];

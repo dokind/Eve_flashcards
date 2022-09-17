@@ -26,8 +26,11 @@ class SplashView extends GetView<SplashController> {
           ],
         ),
       ),
-      child: const Center(
-        child: AppLogo(height: 80.0),
+      child: Center(
+        child: AppLogo(
+          height: MediaQuery.of(context).size.height * 0.2,
+          path: 'assets/images/eve.png',
+        ),
       ),
     );
   }

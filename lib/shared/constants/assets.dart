@@ -6,8 +6,8 @@ const json = 'assets/json/';
 const audios = 'assets/audios/';
 
 /// images
-const icLogo = '${png}logo.png';
-// TODO add more images
+const logo = '${png}eve.png';
+
 /// svgs
 const icBack = '${icons}back.svg';
 
