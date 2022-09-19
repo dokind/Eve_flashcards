@@ -23,11 +23,17 @@ class OnboardView extends GetView<AuthController> {
                         child: Padding(
                           padding: EdgeInsets.only(
                               bottom: MediaQuery.of(context).padding.bottom),
-                          child: ElevatedButton(
+                          child: FilledButton(
                             onPressed: () async {
                               await controller.onBoardingDone();
                             },
-                            child: const Text('Let\'s start'),
+                            child: const FractionallySizedBox(
+                              widthFactor: 0.8,
+                              child: Text(
+                                'Let\'s start',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
                         ),
                       ),

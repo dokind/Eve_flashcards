@@ -11,10 +11,11 @@ class ContinueButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DelayedAnimation(
-      child: ElevatedButton(
+      child: FilledButton(
         onPressed: controller.navigateToOnboard,
+        color: secondary,
         child: FractionallySizedBox(
-          widthFactor: 0.82,
+          widthFactor: 0.8,
           child: Text(
             'Continue',
             // theme on button

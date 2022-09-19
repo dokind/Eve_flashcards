@@ -81,14 +81,21 @@ class LoginView extends StatelessWidget {
                 },
               ),
               CommonWidget.rowHeight(height: 64),
-              ElevatedButton(
+              FilledButton(
+                color: Colors.white,
+                contentColor: Colors.pink,
                 onPressed: () {
                   controller.login(context);
                 },
-                child: const SizedBox(),
+                child: Text(
+                  'Login',
+                  // style: Theme.of(context)
+                  //     .textTheme
+                  //     .button!
+                  //     .copyWith(color: Colors.white),
+                ),
               ),
               CommonWidget.rowHeight(height: kDefaultMargin),
-              const Text('Forgot Password?', textAlign: TextAlign.center)
             ],
           ),
         ),

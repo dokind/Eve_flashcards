@@ -19,11 +19,12 @@ class LoginRegisterButton extends StatelessWidget {
           _horizontalSpacer(),
           Expanded(
             /// Login Button
-            child: ElevatedButton(
+            child: FilledButton(
+              color: Colors.white,
               onPressed: () async {
                 // delete pref keys
-                var pref = Get.find<SharedPreferences>();
-                pref.remove('isOnboardingDone');
+                // var pref = Get.find<SharedPreferences>();
+                // pref.remove('isOnboardingDone');
                 Get.toNamed(Routes.LOGIN, arguments: controller);
               },
               child: const Text(
@@ -34,7 +35,7 @@ class LoginRegisterButton extends StatelessWidget {
           _horizontalSpacer(),
           Expanded(
             /// Register Button
-            child: ElevatedButton(
+            child: FilledButton(
               onPressed: () {
                 Get.toNamed(Routes.REGISTER, arguments: controller);
               },

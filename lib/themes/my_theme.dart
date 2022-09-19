@@ -51,8 +51,9 @@ class MyTheme {
       backgroundColor: secondary,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      indicatorColor: primary,
+      indicatorColor: Colors.transparent,
       elevation: 8.0,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       iconTheme: MaterialStateProperty.resolveWith(
         (Set<MaterialState> states) {
           return null; // Use the component's default.

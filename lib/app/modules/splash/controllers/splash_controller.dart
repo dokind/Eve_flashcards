@@ -47,7 +47,7 @@ class SplashController extends GetxController {
     worker = ever<String?>(
       token,
       (tkn) {
-        if (tkn != null) {
+        if (tkn == null) {
           Get.offAllNamed(Routes.HOME);
         } else {
           Get.offAllNamed(Routes.AUTH);

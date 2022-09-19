@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../shared/shared.dart';
 import '../home.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,49 +12,39 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (controller) => controller.obx(
-        onLoading: Container(
-          color: Colors.white,
-          child: const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ),
+        onLoading: const SplashWidget(),
         onError: (error) => Center(
-          child: Center(
-            child: Text(
-              error.toString(),
-            ),
+          child: Text(
+            error.toString(),
           ),
         ),
         (user) => Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Welcome ',
-                ),
-                SizedBox(height: 20),
-              ],
-            ),
-          ),
+          body: controller.getSelectedPage(controller.currentIndex),
           bottomNavigationBar: NavigationBar(
+              height: 60.0,
+              animationDuration: const Duration(),
               selectedIndex: controller.currentIndex,
               onDestinationSelected: (value) => controller.changeIndex(value),
               destinations: const [
                 NavigationDestination(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+                  icon: Icon(Icons.home_rounded),
+                  selectedIcon: Icon(Icons.home_rounded, color: primary),
+                  label: 'Feed',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.favorite),
-                  label: 'Favorite',
+                  icon: Icon(Icons.book_outlined),
+                  selectedIcon: Icon(Icons.book_outlined, color: primary),
+                  label: 'Feed',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
+                  icon: Icon(Icons.local_activity_rounded),
+                  selectedIcon:
+                      Icon(Icons.local_activity_rounded, color: primary),
+                  label: 'Activity',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.person_rounded),
+                  selectedIcon: Icon(Icons.person_rounded, color: primary),
                   label: 'Profile',
                 ),
               ]),
