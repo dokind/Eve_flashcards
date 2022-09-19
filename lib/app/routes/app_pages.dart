@@ -1,16 +1,6 @@
 import 'package:get/get.dart';
 
-import '../modules/activity/bindings/activity_binding.dart';
-import '../modules/activity/views/activity_view.dart';
-import '../modules/feed/bindings/feed_binding.dart';
-import '../modules/feed/views/feed_view.dart';
-import '../modules/flashcards/bindings/flashcards_binding.dart';
-import '../modules/flashcards/flashdetail/bindings/flashdetail_binding.dart';
-import '../modules/flashcards/flashdetail/views/flashdetail_view.dart';
-import '../modules/flashcards/views/flashcards_view.dart';
 import '../modules/modules.dart';
-import '../modules/profile/bindings/profile_binding.dart';
-import '../modules/profile/views/profile_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -53,10 +43,12 @@ class AppPages {
       binding: FeedBinding(),
     ),
     GetPage(
-      name: _Paths.ACTIVITY,
-      page: () => const ActivityView(),
-      binding: ActivityBinding(),
-    ),
+        name: _Paths.ACTIVITY,
+        page: () => const ActivityView(),
+        binding: ActivityBinding(),
+        children: [
+          GetPage(name: SpaceGame.route, page: () => const SpaceGame()),
+        ]),
     GetPage(
       name: _Paths.FLASHCARDS,
       page: () => const FlashcardsView(),
